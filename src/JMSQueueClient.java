@@ -38,10 +38,10 @@ public class JMSQueueClient {
      */
     private void createJNDIContext() {
         System.setProperty("org.omg.CORBA.ORBInitialHost", host);
-        System.setProperty("org.omg.CORBA.ORBInitialPort", "4848");
+        System.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
         Properties env = new Properties();
         env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.cosnaming.CNCtxFactory");
-        env.put(Context.PROVIDER_URL, "iiop://" + host + ":4848");
+        env.put(Context.PROVIDER_URL, "iiop://" + host + ":3700");
         try {
             this.jndiContext = new InitialContext(env);
         } catch (NamingException e) {
