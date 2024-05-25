@@ -3,6 +3,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import java.util.Objects;
+import java.util.Properties;
 
 
 /**
@@ -37,9 +38,12 @@ public class JMSQueueClient {
      */
     private void createJNDIContext() {
         System.setProperty("org.omg.CORBA.ORBInitialHost", host);
-        System.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
+        System.setProperty("org.omg.CORBA.ORBInitialPort", "4848");
+        Properties env = new Properties();
+        env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.cosnaming.CNCtxFactory");
+        env.put(Context.PROVIDER_URL, "iiop://" + host + ":4848");
         try {
-            this.jndiContext = new InitialContext();
+            this.jndiContext = new InitialContext(env);
         } catch (NamingException e) {
             System.err.println("Could not create JNDI API context: " + e);
         }
